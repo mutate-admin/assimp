@@ -2137,6 +2137,11 @@ void Converter::SetShadingPropertiesCommon( aiMaterial* out_mat, const PropertyT
         out_mat->AddProperty( &Specular, 1, AI_MATKEY_COLOR_SPECULAR );
     }
 
+    const aiColor3D& Transparent = GetColorPropertyFromMaterial( props, "TransparentColor", ok );
+    if ( ok ) {
+        out_mat->AddProperty( &Transparent, 1, AI_MATKEY_COLOR_TRANSPARENT );
+    }
+
     const float Opacity = PropertyGet<float>( props, "Opacity", ok );
     if ( ok ) {
         out_mat->AddProperty( &Opacity, 1, AI_MATKEY_OPACITY );
