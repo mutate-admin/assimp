@@ -243,6 +243,8 @@ const unsigned int* MeshGeometry::ToOutputVertexIndex( unsigned int in_index, un
     ai_assert( m_mapping_counts.size() == m_mapping_offsets.size() );
     count = m_mapping_counts[ in_index ];
 
+    if(!count) return NULL;
+
     ai_assert( m_mapping_offsets[ in_index ] + count <= m_mappings.size() );
 
     return &m_mappings[ m_mapping_offsets[ in_index ] ];
@@ -500,8 +502,8 @@ void ResolveVertexDataArray(std::vector<T>& data_out, const Scope& source,
     			data_out[next] = tempData[i];
             }
             next ++;
+            }
         }
-    }
     else {
         FBXImporter::LogError(Formatter::format("ignoring vertex data channel, access type not implemented: ")
             << MappingInformationType << "," << ReferenceInformationType);

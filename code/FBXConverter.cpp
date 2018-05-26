@@ -1574,7 +1574,7 @@ void Converter::ConvertWeights( aiMesh* out, const Model& model, const MeshGeome
                 const unsigned int* const out_idx = geo.ToOutputVertexIndex( index, count );
                 // ToOutputVertexIndex only returns NULL if index is out of bounds
                 // which should never happen
-                ai_assert( out_idx != NULL );
+                ai_assert( count == 0 || out_idx != NULL );
 
                 index_out_indices.push_back( no_index_sentinel );
                 count_out_indices.push_back( 0 );
